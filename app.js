@@ -62,8 +62,6 @@ app.use(commentsRoutes);
 app.use(userRoutes);
 app.use(contactRoutes);
 
-app.listen(3000, function() {
-    console.log("Server is listening...")
-});
-
-
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Server is listening...");
+})

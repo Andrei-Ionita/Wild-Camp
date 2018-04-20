@@ -29,8 +29,6 @@ MongoClient.connect(urlDB, function(err, db) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
         console.log('Connection established to', url);
-        //Close connection
-        db.close();
         }
 });
 // mongoose.connect("mongodb://shade1989:" + mLabDBpsw + "@ds151259.mlab.com:51259/wild_camps");

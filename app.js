@@ -28,7 +28,7 @@ MongoClient.connect("mongodb://shade1989:shade1989.@ds151259.mlab.com:51259/wild
     if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {
-        console.log('Connection established to', url);
+        console.log('Connection established to', urlDB);
         }
 });
 // mongoose.connect("mongodb://shade1989:" + mLabDBpsw + "@ds151259.mlab.com:51259/wild_camps");

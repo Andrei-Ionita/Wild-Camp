@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+        <h1 class=" text-center mb-4">Create a new Campground</h1>
+        <form action="/campgrounds" method="POST" enctype="multipart/form-data">
+            <div class="md-form">
+                <i class="fa prefix fa-map"></i>
+                <input class="form-control" type="text" name="name" id="name">
+                <label for="name">Insert New Camp</label>
+            </div>
+            <div class="md-form">
+                <!--
+                <div class="file-field d-flex">
+                    <div class="btn btn-primary btn-sm float-left">
+                        <span id="imageUpload">Choose file</span>
+                        <input class="d-none" type="file" id="chooseFile">
+                    </div>
+                    <div class="file-path-wrapper" style="flex: 2">
+                        <input class="file-path validate" type="text" placeholder="Upload your file" name="myImage" accept="image/*">
+                    </div>
+                </div>
+                -->
+                <div class="md-form">
+                <i class="prefix fa fa-photo"></i>
+                <input type="file" class="form-control" placeholder="Upload your file" name="myImage" accept="image/*" id="image" required>
+                </div>
+            </div>
+            <div class="md-form">
+                <i class="prefix fa fa-pencil"></i>
+                <input class="form-control" type="text" name="description" id="description">
+                <label for="description">Description</label>
+            </div>
+            <div class="form-group d-none">
+                <input class="form-control" type="number" name="price" placeholder="price" min="0.0" step="0.1">
+            </div>
+            <div class="md-form">
+                <i class="prefix fa fa-location-arrow"></i>
+                <input class="form-control" type="text" name="location" id="location" placeholder="Muntii Piatra Craiului">
+                <label for="location">Location</label>
+            </div>
+            <div class="md-form">
+                <i class="fa prefix fa-map-marker"></i>
+                <input type="text" id="latitude" class="form-control" name="lat">
+                <label for="latitude">Latitude</label>
+            </div>
+            <div class="md-form">
+                <i class="fa prefix fa-map-marker"></i>
+                <input type="text" id="longitude" class="form-control" name="lng">
+                <label for="longitude">Longitude</label>
+            </div>
+            <div class="md-form">
+                <i class="fa prefix fa-star"></i>
+                <input type="text" id="rating" class="form-control" name="rating">
+                <label for="rating">Score</label>
+            </div>
+            <button class="btn btn-lg btn-success btn-block mb-1" type="submit">Submit</button>
+        </form>    
+        <a href="/campgrounds">Back</a>
+        </div>
+    </div>
+   
+<% include ../partials/footer %>

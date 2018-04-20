@@ -1,0 +1,110 @@
+<% include ../partials/header %>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card card-cascade wider">
+                <!--Card image-->
+                <div class="view overlay m-auto w-25">
+                    <% if(user.avatar) { %>
+                        <img src="<%= user.avatar %>" class="img-fluid" alt="user avatar">
+                    <% } else { %>
+                        <img src="https://www.scottsdaleazestateplanning.com/wp-content/uploads/2018/01/user.png" class="img-fluid" alt="user avatar">
+                    <% } %>
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--/Card image-->
+            
+                <!--Card content-->
+                <div class="card-body text-center">
+                    <!--Title-->
+                    <h4 class="card-title"><strong><%= user.firstName + " " + user.lastName %></strong></h4>
+                    <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam. </p>
+                    <a href="mailto:<%= user.email %>"><%= user.email %></a>
+                </div>
+            <!--/.Card content-->
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h3>About Me</h3>
+            <p class="lead"><%= user.description %></p>
+            <% if(currentUser && user._id.equals(currentUser._id)) { %>
+                <a href="/users/<%= user._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+            <% } %>
+        </div>
+    </div>
+    <hr class="mb-4">
+
+    <!-- CAMPGROUNDS DISPLAY -->
+    <button id="switch" class="btn btn-lg btn-success d-block mr-auto ml-auto mb-4">Favorite Campgrounds</button>
+
+    <div id="myCamps" class="row" style="justify-content: center">
+        <h3 class="heading-block">My Campgrounds</h3>
+        <% campgrounds.forEach(function(campground) { %>
+            <div class="col-lg-12">
+                <!--Card-->
+                <div class="card card-cascade wider reverse my-4">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img src="<%= campground.image %>" class="card-img-top">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                        <!--Title-->
+                        <h4 class="card-title"><strong><%= campground.name %></strong></h4>
+                        <h5 class="indigo-text"><strong><%= campground.location %></strong></h5>
+                        <p class="card-text"><%= campground.description %></p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-md btn-success">View Camp</a>
+                    </div>
+                    <!--/.Card content-->
+                </div>
+                <!--/.Card-->
+            </div>
+        <% }) %>
+    </div>
+
+    <div id="favCamps" class="row d-none" style="justify-content: center">
+        <h3 class="heading-block">Favorite Campgrounds</h3>
+        <% user.favCamps.forEach(function(campground) { %>
+            <div class="col-lg-12">
+                <!--Card-->
+                <div class="card card-cascade wider reverse my-4">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img src="<%= campground.image %>" class="card-img-top">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+                    <!--/Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                        <!--Title-->
+                        <h4 class="card-title"><strong><%= campground.name %></strong></h4>
+                        <h5 class="indigo-text"><strong><%= campground.location %></strong></h5>
+                        <p class="card-text"><%= campground.description %></p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-md btn-success">View Camp</a>
+                        <form action="/users/<%= user._id %>/deleteCamp?_method=PUT" method="POST">
+                            <input class="d-none" type="text" name="deleteCampground" value="<%= campground._id %>">
+                            <button type="submit" class="btn btn-md btn-danger">Delete Camp</button>
+                        </form>
+                    </div>
+                    <!--/.Card content-->
+                </div>
+                <!--/.Card-->
+            </div>
+        <% }) %>
+    </div>
+
+<% include ../partials/footer %>
+

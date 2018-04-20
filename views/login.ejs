@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<div class="row" style="flex-direction: column">
+    <h1 class="text-center">Login</h1>
+    <div class="form-login-reg">
+        <form action="/login" method="post">
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="username" name="username" class="form-control">
+                <label for="username">Username</label>
+            </div>
+            <div class="md-form">
+                <i class="prefix grey-text fa fa-lock"></i>
+                <input type="password" id="password" name="password" class="form-control">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block btn-md-lg">Login</button>
+            </div>
+        </form>
+        <a href="/campgrounds">Go Back</a>
+    </div>
+</div>
+   
+<% include partials/footer %>

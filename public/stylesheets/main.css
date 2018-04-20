@@ -1,0 +1,77 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body >* {
+    box-sizing: border-box;
+}
+
+.card__comments-box {
+    background-color: lightgrey;
+}
+
+.col-md-12 .btn {
+    margin-left: 0;
+}
+
+.card-body {
+    padding: 0.5rem;
+}
+
+.camp-delete-button {
+    display: inline-block;
+}
+
+.comment-delete-button {
+    display: inline-block;
+}
+
+.form-login-reg {
+    width: 35%;
+    margin: 25px auto;
+}
+
+/* GOOGLE MAPS */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.navbar,
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* STAR RATINGS STYLING */
+.stars-outer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+  
+  .stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #ccc;
+  }
+  
+  .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f8ce0b;
+  }
+
+

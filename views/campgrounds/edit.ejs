@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+        <h1 class=" text-center mb-4">Edit the <%= campground.name %> Campground</h1>
+        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="md-form">
+                <i class="prefix fa fa-map"></i>
+                <input class="form-control" type="text" name="campground[name]" value="<%= campground.name %>" id="name">
+                <label for="name">Name</label>
+            </div>
+            <div id="image" class="md-form d-none">
+                <i class="prefix fas fa-image"></i>
+                <input type="file" class="form-control" placeholder="Upload your file" name="myImage" accept="image/*" required>
+            </div>
+            <div class="md-form">
+                <i class="prefix fas fa-pen-square"></i>
+                <input class="form-control" type="text" name="campground[description]" value="<%= campground.description %>" id="description">
+                <label for="description">Description</label>
+            </div>
+            <div class="md-form">
+                <i class="prefix fa fa-location-arrow"></i>
+                <input class="form-control" type="text" name="campground[location]" id="location" value="<%= campground.location %>">
+                <label for="location">Location</label>
+            </div>
+            <div class="md-form">
+                <i class="prefix fa fa-map-marker"></i>
+                <input class="form-control" type="text" name="campground[lat]" id="location" value="<%= campground.lat %>" id="lat">
+                <label for="lat">Latitude</label>
+            </div>
+            <div class="md-form">
+                <i class="prefix fa fa-map-marker"></i>
+                <input class="form-control" type="text" name="campground[lng]" id="location" value="<%= campground.lng %>" id="lng">
+                <label for="lng">Longitude</label>
+            </div>
+            <div class="md-form">
+                <i class="fa prefix fa-star"></i>
+                <input type="text" id="rating" class="form-control" name="campground[rating]" value="<%= campground.rating %>">
+                <label for="rating">Score</label>
+            </div>
+            <button class="btn btn-lg btn-success btn-block mb-1" type="submit">Submit</button>
+        </form>
+        <!--<button class="btn btn-md btn-warning" onclick="$('#image').toggleClass('d-none')">Change Picture</button> -->   
+        <a href="/campgrounds" + <%= campground._id %> >Back</a>
+        </div>
+    </div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,74 @@
+        </div>
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="/js/mdb.min.js"></script>
+
+        <!-- External JavaScripts
+        ============================================= -->
+        <script type="text/javascript" src="/js/plugins.js"></script>
+
+        <!-- Select-Boxes Plugin -->
+        <script type="text/javascript" src="/js/canvas/bs-switches.js"></script>
+
+        <!-- Footer Scripts
+        ============================================= -->
+        <script type="text/javascript" src="/js/functions.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready( function($){
+
+                // Multiple Select
+                $(".select-1").select2({
+                    placeholder: "Select Multiple Values"
+                });
+
+                // Loading array data
+                var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+                $(".select-data-array").select2({
+                data: data
+                })
+                $(".select-data-array-selected").select2({
+                data: data
+                });
+
+                // Enabled/Disabled
+                $(".select-disabled").select2();
+                $(".select-enable").on("click", function () {
+                    $(".select-disabled").prop("disabled", false);
+                    $(".select-disabled-multi").prop("disabled", false);
+                });
+                $(".select-disable").on("click", function () {
+                    $(".select-disabled").prop("disabled", true);
+                    $(".select-disabled-multi").prop("disabled", true);
+                });
+
+                // Without Search
+                $(".select-hide").select2({
+                    minimumResultsForSearch: Infinity
+                });
+
+                // select Tags
+                $(".select-tags").select2({
+                    tags: true
+                });
+
+                // Select Splitter
+                $('.selectsplitter').selectsplitter();
+
+            });
+        </script>
+        <script>
+            $("#switch").click(function() {
+                $("#myCamps").toggleClass("d-none");
+                $("#favCamps").toggleClass("d-none");
+                $(this).text($(this).text() == 'Favorite Campgrounds' ? 'My Campgrounds' : 'Favorite Campgrounds');
+            });
+        </script>
+    </body>
+</html>

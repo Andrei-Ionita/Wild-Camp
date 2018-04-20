@@ -1,0 +1,107 @@
+<% include ../partials/header %>
+
+    <% if(currentUser && currentUser.isAdmin) { %>
+        <h1 class="text-center">You are an Admin!</h1>
+    <% } %>
+
+    <header class="jumbotron">
+        <div class="col-lg-12">
+            <h1><img src="../img/Tent-icon.png" class="img-fluid" alt="tent" style="width: 70px; height: 70px;"> Bun Venit pe WildCamp!</h1>
+            <p>Aici gasesti cele mai spectaculoase locuri de campare.</p>
+            <a class="btn btn-success btn-lg" href="/campgrounds/new">Adauga Loc de Campare</a>
+        </div>
+        <form action="/campgrounds" method="GET" class="form-inline mt-4">
+            <div class="form-group">
+                <input type="text", name="search", placeholder="cauta camping" class="form-control">
+                <input type="submit" value="Cauta" class="btn btn-default">
+            </div>
+        </form>    
+    </header>
+    
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <% if(noMatch !== undefined) { %>
+                <h3><%= noMatch %></h3>
+            <% } %>
+        </div>
+    </div>
+    <div class="row text-center">
+        <% campgrounds.forEach(function(camp) { %>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card">
+                <img class="img-fluid" src="<%= camp.image %>" alt="imagine_camping">
+                <div class="card-body">
+                    <h4><%= camp.name %></h4>
+                    <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary">Detalii</a>
+                </div>
+            </div>
+        </div>
+        <% });%>
+    </div>
+
+    <nav aria-label="pagination example">
+        <% if (pages && pages > 0) { %>
+        <ul class="pagination pagination-circle pg-blue mb-0 justify-content-center align-items-center">
+            <% if (current == 1) { %>
+            <li class="page-item disabled"><a class="page-link">First</a></li>
+            <% } else { %>
+            <li class="page-item disabled"><a href="/campgrounds" class="page-link">First</a></li>
+            <% } %>
+    
+            <% if (current == 1) { %>
+                <li class="page-item disabled">
+                    <a class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>   
+            <% } else { %>
+                <li class="page-item">
+                    <a href="/campgrounds?page=<%= Number(current) - 1 %>" class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            <% } %>
+    
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+            <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } %>
+            <% for (i; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+            <li class="page-item active"><a class="page-link"><%= i %></a></li>
+            <% } else { %>
+            <li class="page-item"><a class="page-link" href="/campgrounds?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+            <li class="page-item disabled"><a class="page-link">...</a></li>
+            <% } %>
+            <% } %>
+    
+            <% if (current == pages) { %>
+            <li class="page-item disabled">
+                <a class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <% } else { %>
+            <li class="page-item disabled">
+                <a href="/campgrounds?page=<%= Number(current) + 1 %>" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <% } %>
+    
+            <% if (current == pages) { %>
+            <li class="page-item disabled"><a>Last</a></li>
+            <% } else { %>
+            <li class="page-item"><a class="page-link" href="/campgrounds?page=<%= pages %>">Last</a></li>
+            <% } %>
+        </ul>
+        <% } %>
+    </nav>
+
+<% include ../partials/footer %>

@@ -23,7 +23,8 @@ var contactRoutes = require("./routes/contact");
 
 var app = express();
 var urlDB = process.env.MONGODB_MLAB;
-MongoClient.connect(MONGODB_URI, function(err, db) {
+
+mongoose.connect(MONGODB_URI, function(err, db) {
     if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {

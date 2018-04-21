@@ -22,9 +22,8 @@ var userRoutes = require("./routes/users");
 var contactRoutes = require("./routes/contact");
 
 var app = express();
-var dbPassword = process.env.MONGODB_PSW;
-var urlDB = process.env.MONGODB_URI;
-MongoClient.connect(urlDB, function(err, db) {
+var urlDB = process.env.MONGODB_MLAB;
+MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
     if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
         } else {

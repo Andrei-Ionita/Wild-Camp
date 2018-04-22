@@ -5,8 +5,13 @@
             <p class="lead">Yelp Camp</p>
             <div class="list-group mb-4">
                 <li class="list-group-item waves-effect"><a href="https://gis.modulo.ro/hiking2_0/zoneMontane.html" target="new">Harta Trasee</a></li>
-                <li class="list-group-item waves-effect">Latitudine: <%= campground.lat %></li>
-                <li class="list-group-item waves-effect">Longitudine: <%= campground.lng %></li>
+                <% if(campground.lat && campground.lng) { %>
+                    <li class="list-group-item waves-effect">Latitudine: <%= campground.latitudine %></li>
+                    <li class="list-group-item waves-effect">Longitudine: <%= campground.longitudine %></li>
+                <% } else { %>
+                <li class="list-group-item waves-effect">Latitudine:</li>
+                <li class="list-group-item waves-effect">Longitudine:</li>
+                <% } %>
             </div>
             <div id="map"></div>
         </div>

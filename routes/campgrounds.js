@@ -98,6 +98,8 @@ router.post("/campgrounds", middleware.isLoggedIn, upload.single("myImage"), fun
         var author = {id: req.user._id, username: req.user.username};
         var image = result.secure_url;
         var rating = req.body.rating;
+        var latitudine = req.body.lat;
+        var longitudine = req.body.lng;
 
         geocoder.geocode(req.body.location, function (err, data) {
             if (err || !data.length) {
@@ -114,7 +116,7 @@ router.post("/campgrounds", middleware.isLoggedIn, upload.single("myImage"), fun
             }
             var location = data[0].formattedAddress;
             // Create a new campground and save to DB
-            var newCampground = {name: name, image: image, description: desc, author:author, location: location, lat: lat, lng: lng, rating: rating};
+            var newCampground = {name: name, image: image, description: desc, author:author, location: location, lat: lat, lng: lng, rating: rating, latitudine: latitudine, longitudine: longitudine};
             Campground.create(newCampground, function(err, newlyCreated){
                 if(err){
                     req.flash("error", err.message);
@@ -196,7 +198,7 @@ router.put("/campgrounds/:id", middleware.checkCampgroundOwnership, upload.singl
                     var lng = data[0].longitude;
                 }
                 var location = data[0].formattedAddress;
-                var updatedCampground = {name: req.body.campground.name, image: image, description: req.body.campground.description, location: location, lat: lat, lng: lng, rating: req.body.rating};
+                var updatedCampground = {name: req.body.campground.name, image: image, description: req.body.campground.description, location: location, lat: lat, lng: lng, rating: req.body.campground.rating, latitudine: req.body.campground.lat, longitudine: req.body.campground.lng};
                 Campground.findByIdAndUpdate(req.params.id, updatedCampground, function(err, campground){
                     if(err){
                         req.flash("error", err.message);

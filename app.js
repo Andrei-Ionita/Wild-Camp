@@ -24,14 +24,14 @@ var contactRoutes = require("./routes/contact");
 var app = express();
 var urlDB = process.env.MONGODB_MLAB;
 
-mongoose.connect(process.env.MONGODB_URI, function(err, db) {
-    if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-        } else {
-        console.log('Connection established to', urlDB);
-        }
-});
-// mongoose.connect(urlDB);
+// mongoose.connect(process.env.MONGODB_URI, function(err, db) {
+//     if (err) {
+//         console.log('Unable to connect to the mongoDB server. Error:', err);
+//         } else {
+//         console.log('Connection established to', urlDB);
+//         }
+// });
+mongoose.connect(urlDB);
 // mongoose.connect("mongodb://andreiionita:" + dbPassword + "@data-shard-00-00-jnwq0.mongodb.net:27017,data-shard-00-01-jnwq0.mongodb.net:27017,data-shard-00-02-jnwq0.mongodb.net:27017/WildCampdb?ssl=true&replicaSet=data-shard-0&authSource=admin")
     
 // mongoose.connect("mongodb://localhost/locuri_campare");

@@ -241,7 +241,7 @@ router.put("/campgrounds/:id", middleware.checkCampgroundOwnership, upload.singl
 
 // UPDATE CAMPGROUND SCORE
 router.put("/campgrounds/:id/rating", middleware.isLoggedIn, function(req, res) {
-    Campground.findByIdAndUpdate(req.params.id, function(err, updatedCampground){
+    Campground.findById(req.params.id, function(err, updatedCampground){
         if(err) {
             req.flash("error", err.message);
             res.redirect("back");
@@ -252,7 +252,6 @@ router.put("/campgrounds/:id/rating", middleware.isLoggedIn, function(req, res) 
             req.flash("success", "Thank you for the rating");
             res.redirect("/campgrounds/" + req.params.id);
         }
-        
     })
 })
 

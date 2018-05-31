@@ -178,44 +178,48 @@
             });
         }
     </script>
+
     <script>
-        var scores = <%- JSON.stringify(campground.rating) %>
-        if(scores.length >= 1) {
-            var count = 0;
-            var sum = 0;
-            function score() {
-                scores.forEach(function(score) {
-                    count = count + 1;
-                    sum = sum + score;
-                });
-            }
-        score();
-        var rating = sum / count;
-        
-        const ratings = {
-            score: rating
-        }
-        
-        const starsTotal = 5;
-        getRatings();
-    
-        // Get ratings
-        function getRatings() {
-            for (let rating in ratings) {
-                // Get percentage
-                const starPercentage = (ratings.score / starsTotal) * 100;
-        
-                // Round to nearest 10
-                const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-        
-                // Set width of stars-inner to percentage
-                document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
-        
-                // Add number rating
-                document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
-            }
-        }
-    </script>
+		var scores = <%- JSON.stringify(campground.rating) %>
+		if(scores.length >= 1) {
+			var count = 0;
+			var sum = 0;
+			function score() {
+				scores.forEach(function(score) {
+                    if(score > 0) {
+                        count += 1;
+					    sum += parseFloat(score);
+                    }
+				});
+			}
+			score();
+			var rating = Math.round(sum / count);
+
+			const ratings = {
+				score: rating
+			}
+			
+			const starsTotal = 5;
+			getRatings();
+		
+			// Get ratings
+			function getRatings() {
+				for (let rating in ratings) {
+					// Get percentage
+					const starPercentage = (ratings.score / starsTotal) * 100;
+			
+					// Round to nearest 10
+					const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+			
+					// Set width of stars-inner to percentage
+					document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+			
+					// Add number rating
+					document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+				}
+			}
+		}
+	</script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAodjm8hTSm0pnDyiuibn7nXq0GEfcWdVc&callback=initMap"></script>
 

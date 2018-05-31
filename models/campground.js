@@ -23,7 +23,7 @@ var campgroundSchema = new mongoose.Schema({
         username: String
     },
     price: Number,
-    rating: {type: Number, default: 0},
+    rating: [],
     createdAt: {type: Date, default: Date.now}
 });
 

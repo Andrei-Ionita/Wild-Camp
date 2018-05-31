@@ -179,7 +179,19 @@
         }
     </script>
     <script>
-        var rating = <%= campground.rating %>;
+        var scores = <%- JSON.stringify(campground.rating) %>
+        if(scores.length >= 1) {
+            var count = 0;
+            var sum = 0;
+            function score() {
+                scores.forEach(function(score) {
+                    count = count + 1;
+                    sum = sum + score;
+                });
+            }
+        score();
+        var rating = sum / count;
+        
         const ratings = {
             score: rating
         }

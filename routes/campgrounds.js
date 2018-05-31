@@ -241,24 +241,18 @@ router.put("/campgrounds/:id", middleware.checkCampgroundOwnership, upload.singl
 
 // UPDATE CAMPGROUND SCORE
 router.put("/campgrounds/:id/rating", middleware.isLoggedIn, function(req, res) {
-    Campground.findById(req.params.id, function(err, foundCampground) {
+    Campground.findByIdAndUpdate(req.params.id, function(err, updatedCampground){
         if(err) {
             req.flash("error", err.message);
             res.redirect("back");
         }
-        if(foundCampground.rating > 0) {
-            var newRating = (foundCampground.rating + Number(req.body.rating))/2;
-        }
         else {
-            var newRating = Number(req.body.rating);
-        }
-        Campground.findByIdAndUpdate(req.params.id, {rating: newRating}, function(err, updatedCampground){
-            if(err) {
-                req.flash("error", err.message);
-                res.redirect("back");
-            }
+            updatedCampground.rating.push(req.body.rating);
+            updatedCampground.save();
+            req.flash("success", "Thank you for the rating");
             res.redirect("/campgrounds/" + req.params.id);
-        })
+        }
+        
     })
 })
 
